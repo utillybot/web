@@ -1,14 +1,26 @@
-import styles from './index.module.scss';
 import { get } from '../../API';
 import Page from '../../components/Page';
 import ErrorBoundary from './components/ErrorBoundary';
 import CommandResourceContext from './components/CommandResourceContext';
-import type { RouteData } from '../../../components/Routes/types';
+import type { RouteData } from '../../../components/types';
 import CommandModules from './pages/CommandModules';
 import CommandModule from './pages/CommandModule';
 import CommandPage from './pages/CommandPage';
 import parseRoutes from '../../../components/Routes';
+import { createUseStyles } from 'react-jss';
 
+const useStyles = createUseStyles({
+	page: {
+		textAlign: 'center',
+		backgroundColor: '#282828',
+		display: 'flex',
+		flexDirection: 'column',
+
+		'& header': {
+			width: '100%',
+		},
+	},
+});
 const routes: RouteData[] = [
 	{
 		path: '/commands',
@@ -29,7 +41,9 @@ const routes: RouteData[] = [
 
 const commandResource = get().commands;
 
-const Commands = (): JSX.Element => {
+export default function Commands(): JSX.Element {
+	const styles = useStyles();
+
 	return (
 		<Page className={styles.page}>
 			<ErrorBoundary>
@@ -42,6 +56,4 @@ const Commands = (): JSX.Element => {
 			</ErrorBoundary>
 		</Page>
 	);
-};
-
-export default Commands;
+}

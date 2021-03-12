@@ -1,6 +1,6 @@
 import ServerSelector from './pages/ServerSelector';
 import ServerManagement from './pages/ServerManagement';
-import type { RouteData } from '../../../components/Routes/types';
+import type { RouteData } from '../../../components/types';
 import parseRoutes from '../../../components/Routes';
 import useProtectedFetch from '../../hooks/useProtectedFetch';
 import GuildsContext from './components/GuildsContext';
@@ -19,9 +19,9 @@ const routes: RouteData[] = [
 	},
 ];
 
-const Servers = (): JSX.Element => {
+export default function Servers(): JSX.Element {
 	const fetchResults = useProtectedFetch<GuildsContextValue>(
-		'/dashboard/api/guilds',
+		'/api/dashboard/guilds',
 		true
 	);
 
@@ -32,6 +32,4 @@ const Servers = (): JSX.Element => {
 			{parseRoutes(routes)}
 		</GuildsContext.Provider>
 	);
-};
-
-export default Servers;
+}

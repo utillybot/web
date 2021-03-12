@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import styles from './index.module.scss';
 import { routes } from './routes';
 import GuildContext from './components/GuildContext';
 import Navbar from './components/Navbar';
@@ -8,12 +7,25 @@ import Page from '../../../../components/Page';
 import parseRoutes from '../../../../../components/Routes';
 import useProtectedFetch from '../../../../hooks/useProtectedFetch';
 import type { PartialGuild } from '../../../../types';
+import { createUseStyles } from 'react-jss';
 
-const ServerManagement = (): JSX.Element => {
+const useStyles = createUseStyles({
+	page: {
+		display: 'flex',
+		flexDirection: 'column',
+
+		'& header img': {
+			borderRadius: '50%',
+		},
+	},
+});
+
+export default function ServerManagement(): JSX.Element {
 	const params = useParams<{ id: string }>();
+	const styles = useStyles();
 
 	const fetchResult = useProtectedFetch<PartialGuild>(
-		`/dashboard/api/guilds/${params.id}`,
+		`/api/dashboard/guilds/${params.id}`,
 		true
 	);
 
@@ -33,6 +45,4 @@ const ServerManagement = (): JSX.Element => {
 			</GuildContext.Provider>
 		</Page>
 	);
-};
-
-export default ServerManagement;
+}

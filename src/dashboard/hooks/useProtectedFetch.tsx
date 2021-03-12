@@ -1,13 +1,13 @@
 import useAuthorization from '../../hooks/useAuthorization';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Login from '../pages/login';
 import Spinner from '../../components/Spinner';
-import useCacheStorage from '../components/CacheStorageContext/useCacheStorage';
+import useCacheStorage from '../components/useCacheStorage';
 
-const useProtectedFetch = <T,>(
+export default function useProtectedFetch<T>(
 	url: string,
 	shouldCache = false
-): [false, JSX.Element] | [true, T] => {
+): [false, JSX.Element] | [true, T] {
 	const cache = useCacheStorage();
 
 	const [started, start, done] = useAuthorization();
@@ -36,6 +36,4 @@ const useProtectedFetch = <T,>(
 	if (!result) return [false, <Spinner key="0" />];
 
 	return [true, result];
-};
-
-export default useProtectedFetch;
+}

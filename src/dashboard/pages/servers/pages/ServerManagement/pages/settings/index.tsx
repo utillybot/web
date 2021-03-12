@@ -1,17 +1,24 @@
-import useGuildContext from '../../components/GuildContext/useGuildContext';
-import styles from './index.module.scss';
+import useGuildContext from '../../components/useGuildContext';
 import useProtectedFetch from '../../../../../../hooks/useProtectedFetch';
+import { createUseStyles } from 'react-jss';
+
+const useStyles = createUseStyles({
+	container: {
+		display: 'flex',
+	},
+});
 
 export interface GuildSettings {
 	prefix: string[];
 }
 
-const Settings = (): JSX.Element => {
+export default function Settings(): JSX.Element {
 	const guild = useGuildContext().guild;
 	const fetchResult = useProtectedFetch<GuildSettings>(
-		`/dashboard/api/guilds/${guild.id}/settings`,
+		`/api/dashboard/guilds/${guild.id}/settings`,
 		true
 	);
+	const styles = useStyles();
 
 	if (!fetchResult[0]) return fetchResult[1];
 
@@ -27,6 +34,4 @@ const Settings = (): JSX.Element => {
 			</ul>
 		</div>
 	);
-};
-
-export default Settings;
+}

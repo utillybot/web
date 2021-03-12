@@ -1,4 +1,4 @@
-import type { NavbarRouteData, RouteData } from '../components/Routes/types';
+import type { NavbarRouteData, RouteData } from '../components/types';
 import Home from './pages/home';
 import Servers from './pages/servers';
 import Error from './pages/error';

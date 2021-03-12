@@ -1,4 +1,4 @@
-import type { NavbarRouteData } from '../../../../../components/Routes/types';
+import type { NavbarRouteData } from '../../../../../components/types';
 import Overview from './pages/overview';
 import Settings from './pages/settings';
 

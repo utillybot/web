@@ -5,7 +5,7 @@ import parseRoutes from '../components/Routes';
 import CacheStorageContext from './components/CacheStorageContext';
 import { useRef } from 'react';
 
-const Dashboard = (): JSX.Element => {
+export default function Dashboard(): JSX.Element {
 	const cacheRef = useRef({});
 
 	return (
@@ -16,6 +16,4 @@ const Dashboard = (): JSX.Element => {
 			</CacheStorageContext.Provider>
 		</Switch>
 	);
-};
-
-export default Dashboard;
+}

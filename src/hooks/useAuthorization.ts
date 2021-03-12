@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const useAuthorization = (): [boolean, () => void, boolean] => {
+export default function useAuthorization(): [boolean, () => void, boolean] {
 	const [start, setStart] = useState(false);
 	const [done, setDone] = useState(false);
 
@@ -8,7 +8,7 @@ const useAuthorization = (): [boolean, () => void, boolean] => {
 		if (!start) return;
 		// Launch a popup to authenticate
 		const popup = window.open(
-			'/dashboard/authorize',
+			'/api/dashboard/authorize',
 			'_blank',
 			'width=500,height=750'
 		);
@@ -37,6 +37,4 @@ const useAuthorization = (): [boolean, () => void, boolean] => {
 	}, [start]);
 
 	return [start, useCallback(() => setStart(true), [setStart]), done];
-};
-
-export default useAuthorization;
+}

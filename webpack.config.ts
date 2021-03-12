@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import type { Configuration } from 'webpack';
@@ -93,47 +91,15 @@ const config = (): Configuration => {
 		baseConfig.devtool = 'source-map';
 		baseConfig.optimization = {
 			minimize: !devMode,
-			minimizer: [
-				new CssMinimizerPlugin({ sourceMap: true }),
-				new TerserPlugin({ sourceMap: true }),
-			],
+			minimizer: [new TerserPlugin({ sourceMap: true })],
 			splitChunks: {
 				chunks: 'all',
 			},
 			runtimeChunk: true,
 		};
 
-		baseConfig.plugins?.push(
-			new MiniCssExtractPlugin({
-				filename: 'static/css/[name].[contenthash].css',
-				chunkFilename: 'static/css/[id].[contenthash].css',
-			})
-		);
 		baseConfig.output!.filename = 'static/js/[name].[contenthash].js';
 	}
-
-	const styleLoader = {
-		loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-	};
-	const cssLoader = {
-		loader: 'css-loader',
-		options: {
-			sourceMap: true,
-			modules: {
-				auto: true,
-				localIdentName: devMode ? '[path][name]__[local]' : '[hash:base64]',
-				exportLocalsConvention: 'camelCaseOnly',
-			},
-		},
-	};
-	const postCssLoader = {
-		loader: 'postcss-loader',
-		options: { sourceMap: true },
-	};
-	const sassLoader = {
-		loader: 'sass-loader',
-		options: { sourceMap: true },
-	};
 
 	const fileLoader = {
 		loader: 'file-loader',
@@ -142,20 +108,10 @@ const config = (): Configuration => {
 		},
 	};
 
-	baseConfig.module?.rules?.push(
-		{
-			test: /\.s[ac]ss$/i,
-			use: [styleLoader, cssLoader, postCssLoader, sassLoader],
-		},
-		{
-			test: /\.css$/i,
-			use: [styleLoader, cssLoader],
-		},
-		{
-			test: /\.(jpg|png|gif|svg|pdf|ico)$/,
-			use: [fileLoader],
-		}
-	);
+	baseConfig.module?.rules?.push({
+		test: /\.(jpg|png|gif|svg|pdf|ico)$/,
+		use: [fileLoader],
+	});
 
 	return baseConfig;
 };

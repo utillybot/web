@@ -1,7 +1,7 @@
 import Home from './pages/home';
 import About from './pages/about';
 import Commands from './pages/commands';
-import type { NavbarRouteData } from '../components/Routes/types';
+import type { NavbarRouteData } from '../components/types';
 
 export const routes: NavbarRouteData[] = [
 	{

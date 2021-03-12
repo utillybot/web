@@ -1,11 +1,11 @@
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import { routes } from './routes';
 import PreloadLazyComponents from '../components/PreloadLazyComponents';
 import { Suspense } from 'react';
 import Spinner from '../components/Spinner';
 import parseRoutes from '../components/Routes';
 
-export const Main = (): JSX.Element => {
+export default function Main(): JSX.Element {
 	return (
 		<Suspense fallback={<Spinner />}>
 			<Navbar />
@@ -13,6 +13,4 @@ export const Main = (): JSX.Element => {
 			{parseRoutes(routes)}
 		</Suspense>
 	);
-};
-
-export default Main;
+}

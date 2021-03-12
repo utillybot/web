@@ -1,10 +1,18 @@
 import Button from '../../../components/Button';
-import styles from './index.module.scss';
 import Page from '../../components/Page';
 import { getCookie } from '../../../helpers';
 import { Redirect } from 'react-router-dom';
+import { createUseStyles } from 'react-jss';
 
-const Error = (): JSX.Element => {
+const useStyles = createUseStyles({
+	button: {
+		padding: '10px',
+	},
+});
+
+export default function Error(): JSX.Element {
+	const styles = useStyles();
+
 	const error = getCookie('error');
 	if (!error) return <Redirect to="/dashboard" />;
 
@@ -25,6 +33,4 @@ const Error = (): JSX.Element => {
 			</Button>
 		</Page>
 	);
-};
-
-export default Error;
+}

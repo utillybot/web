@@ -1,12 +1,40 @@
 import { useEffect, useState } from 'react';
-import styles from './index.module.scss';
 import { fetchStats } from '../../API';
-import Stat from './components/Stat';
+import Stat from './Stat';
 import Page from '../../components/Page';
+import { createUseStyles } from 'react-jss';
 
-const About = (): JSX.Element => {
+const useStyles = createUseStyles({
+	page: {
+		textAlign: 'center',
+		backgroundColor: '#282828',
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+
+		'& header': {
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			height: '35%',
+		},
+	},
+	stats: {
+		width: '100%',
+		textAlign: 'center',
+	},
+	container: {
+		display: 'flex',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+});
+
+export default function About(): JSX.Element {
 	const [guilds, setGuilds] = useState<number>();
 	const [users, setUsers] = useState<number>();
+	const styles = useStyles();
 
 	const tick = async () => {
 		const stats = await fetchStats();
@@ -50,6 +78,4 @@ const About = (): JSX.Element => {
 			</div>
 		</Page>
 	);
-};
-
-export default About;
+}

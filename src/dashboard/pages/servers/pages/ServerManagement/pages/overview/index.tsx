@@ -1,5 +1,3 @@
-const Overview = (): JSX.Element => {
+export default function Overview(): JSX.Element {
 	return <></>;
-};
-
-export default Overview;
+}
