@@ -1,10 +1,10 @@
 import ServerSelector from './pages/ServerSelector';
 import ServerManagement from './pages/ServerManagement';
 import type { RouteData } from '../../../components/types';
-import parseRoutes from '../../../components/Routes';
 import useProtectedFetch from '../../hooks/useProtectedFetch';
 import GuildsContext from './components/GuildsContext';
 import type { GuildsContextValue } from './components/GuildsContext';
+import Routes from '../../../components/Routes';
 
 const routes: RouteData[] = [
 	{
@@ -29,7 +29,7 @@ export default function Servers(): JSX.Element {
 		<GuildsContext.Provider
 			value={fetchResults[0] ? fetchResults[1] : undefined}
 		>
-			{parseRoutes(routes)}
+			<Routes routes={routes} />
 		</GuildsContext.Provider>
 	);
 }
