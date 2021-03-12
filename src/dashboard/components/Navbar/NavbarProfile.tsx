@@ -1,6 +1,6 @@
 import CollapsableContent from '../../../components/Collapsable/CollapsableContent';
 import NavbarSection from './NavbarSection';
-import useUserContext from '../useUserContext';
+import useUserContext from '../../hooks/useUserContext';
 import type { RefObject } from 'react';
 import { forwardRef, useRef } from 'react';
 import useMatchMedia from '../../../hooks/useMatchMedia';

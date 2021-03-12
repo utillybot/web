@@ -6,8 +6,8 @@ import type { RouteData } from '../../../components/types';
 import CommandModules from './pages/CommandModules';
 import CommandModule from './pages/CommandModule';
 import CommandPage from './pages/CommandPage';
-import parseRoutes from '../../../components/Routes';
 import { createUseStyles } from 'react-jss';
+import Routes from '../../../components/Routes';
 
 const useStyles = createUseStyles({
 	page: {
@@ -51,7 +51,7 @@ export default function Commands(): JSX.Element {
 					<header>
 						<h2>View all the commands for Utilly!</h2>
 					</header>
-					{parseRoutes(routes)}
+					<Routes routes={routes} />
 				</CommandResourceContext.Provider>
 			</ErrorBoundary>
 		</Page>

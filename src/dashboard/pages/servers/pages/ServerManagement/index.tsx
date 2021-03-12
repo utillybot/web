@@ -4,10 +4,10 @@ import GuildContext from './components/GuildContext';
 import Navbar from './components/Navbar';
 import { getGuildIcon } from '../../../../helpers';
 import Page from '../../../../components/Page';
-import parseRoutes from '../../../../../components/Routes';
 import useProtectedFetch from '../../../../hooks/useProtectedFetch';
 import type { PartialGuild } from '../../../../types';
 import { createUseStyles } from 'react-jss';
+import Routes from '../../../../../components/Routes';
 
 const useStyles = createUseStyles({
 	page: {
@@ -41,7 +41,7 @@ export default function ServerManagement(): JSX.Element {
 					<h1>{guild.name}</h1>
 				</header>
 				<Navbar />
-				{parseRoutes(routes)}
+				<Routes routes={routes} />
 			</GuildContext.Provider>
 		</Page>
 	);

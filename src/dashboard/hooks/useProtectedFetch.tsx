@@ -2,7 +2,7 @@ import useAuthorization from '../../hooks/useAuthorization';
 import { useEffect, useState } from 'react';
 import Login from '../pages/login';
 import Spinner from '../../components/Spinner';
-import useCacheStorage from '../components/useCacheStorage';
+import useCacheStorage from './useCacheStorage';
 
 export default function useProtectedFetch<T>(
 	url: string,

@@ -1,9 +1,9 @@
 import UserContext from './UserContext';
 import Navbar from './Navbar/Navbar';
 import { protectedRoutes } from '../routes';
-import parseRoutes from '../../components/Routes';
 import useProtectedFetch from '../hooks/useProtectedFetch';
 import type { User } from '../types';
+import Routes from '../../components/Routes';
 
 export default function ProtectedDashboard(): JSX.Element {
 	const fetchResult = useProtectedFetch<User>('/api/dashboard/users');
@@ -15,7 +15,7 @@ export default function ProtectedDashboard(): JSX.Element {
 	return (
 		<UserContext.Provider value={user}>
 			<Navbar />
-			{parseRoutes(protectedRoutes)}
+			<Routes routes={protectedRoutes} />
 		</UserContext.Provider>
 	);
 }

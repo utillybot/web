@@ -2,7 +2,7 @@ import Button from '../../../components/Button';
 import Spinner from '../../../components/Spinner';
 import { getUserAvatar } from '../../helpers';
 import Page from '../../components/Page';
-import useUserContext from '../../components/useUserContext';
+import useUserContext from '../../hooks/useUserContext';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
